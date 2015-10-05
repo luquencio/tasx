@@ -28,7 +28,7 @@ class Report(models.Model):
     date =  models.DateTimeField(auto_now_add=True)
     title =  models.CharField(max_length = 50)
     status = models.CharField(max_length = 5, choices=STATUS_CHOICES)
-    descr =  models.CharField(max_length = 200)
+    descr =  models.TextField()
     category = models.CharField(max_length = 5 , choices=CATEGORY_CHOICES)
     photo = models.ImageField(upload_to="media/reports", blank=True, null=True)
     client = models.ForeignKey(Client)
@@ -54,7 +54,7 @@ class Payment(models.Model):
     date = models.DateTimeField()
 
 class Comments(models.Model):
-    comment = models.CharField(max_length = 200)
+    comment = models.TextField()
     rate = models.IntegerField()
     user = models.ForeignKey(Client)
 
