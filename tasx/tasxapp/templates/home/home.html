@@ -1,17 +1,28 @@
 {%extends "home/base.html" %}
 
 {%block content%}
+
+{% if reports %}
+
 {% for report in reports %}
+
 <div>
   <div class="reports">
     <div class="date">
       <p>Published: {{ report.date }}</p>
       </div>
-      <h3><a href="">{{ report.title }}</a></h3>
-      <h1><a href="{% url "tasxapp.views.report_detail" pk=report.pk %}">{{ report.title }}</a></h1>
+    <h3><a href="report/{{ report.id }}/">{{ report.title }}</a></h3>
       <p>{{report.category}}</p>
       <p>{{ report.descr }}</p>
     </div>
 </div>
+
   {% endfor %}
+
+{% else %}
+<h2>No reports found.</h2>
+{% endif %}
+<script>
+  console.log("Lucas MMG")
+</script>
 {% endblock content%}

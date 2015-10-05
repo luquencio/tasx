@@ -1,0 +1,13 @@
+{%extends "home/base.html" %}
+
+    {% block content %}
+        <div class="reports">
+            {% if report.date %}
+                <div class="date">
+                    {{ report.date }}
+                </div>
+            {% endif %}
+            <h1>{{ report.title }}</h1>
+            <p>{{ report.descr|linebreaks }}</p>
+        </div>
+    {% endblock %}
