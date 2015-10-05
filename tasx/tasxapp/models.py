@@ -49,12 +49,12 @@ class TechnicalStaff(models.Model):
 
 class ReportResult(models.Model):
     report = models.ForeignKey(Report)
-    employee = models.ForeignKey(Employee)
+    tech = models.ForeignKey(TechnicalStaff)
 
 class Payment(models.Model):
     report = models.ForeignKey(Report)
     client = models.ForeignKey(Client)
-    employee = models.ForeignKey(Employee)
+    tech = models.ForeignKey(TechnicalStaff)
     cost = models.IntegerField()
     company_percentage = models.IntegerField()
     date = models.DateTimeField()
