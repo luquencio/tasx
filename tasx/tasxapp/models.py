@@ -53,7 +53,7 @@ class Payment(models.Model):
     cost = models.IntegerField()
     date = models.DateTimeField()
 
-class comments(models.Model):
+class Comments(models.Model):
     comment = models.CharField(max_length = 200)
     rate = models.IntegerField()
     user = models.ForeignKey(Client)

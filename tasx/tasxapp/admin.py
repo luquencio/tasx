@@ -6,3 +6,6 @@ from .models import *
 admin.site.register(Report)
 admin.site.register(Employee)
 admin.site.register(Client)
+admin.site.register(ReportResult)
+admin.site.register(Payment)
+admin.site.register(Comments)
