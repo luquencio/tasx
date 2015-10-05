@@ -71,6 +71,11 @@ class Rental(models.Model):
     rental_date = models.DateTimeField()
     return_date = models.DateTimeField()
 
+class ToolRental(models.Model):
+    
+
+
+
 class Tool(models.Model):
     STATUS_CHOICES = (
     ('P', 'Prestado'),
