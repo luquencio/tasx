@@ -32,6 +32,7 @@ class Report(models.Model):
     category = models.CharField(max_length = 5 , choices=CATEGORY_CHOICES)
     photo = models.ImageField(upload_to="media/reports", blank=True, null=True)
     client = models.ForeignKey(Client)
+    schedule = models.CharField(max_length = 50)
 
 class Employee(models.Model):
     username = models.CharField(max_length = 50)
