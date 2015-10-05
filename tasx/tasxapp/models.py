@@ -34,13 +34,17 @@ class Report(models.Model):
     client = models.ForeignKey(Client)
     schedule = models.CharField(max_length = 50)
 
-class Employee(models.Model):
+class TechnicalStaff(models.Model):
     username = models.CharField(max_length = 50)
     email = models.CharField(max_length = 100)
     password = models.CharField(max_length = 50)
     first_name = models.CharField(max_length = 50)
     last_name = models.CharField(max_length = 50)
     address = models.CharField(max_length = 100)
+    phone = models.CharField(max_length = 11)
+    home_phone = models.CharField(max_length = 11)
+    code = models.CharField(max_length = 11)
+    photo = models.ImageField(upload_to="media/staff", blank=False, null=False)
     rating = models.IntegerField()
 
 class ReportResult(models.Model):
@@ -52,12 +56,21 @@ class Payment(models.Model):
     client = models.ForeignKey(Client)
     employee = models.ForeignKey(Employee)
     cost = models.IntegerField()
+    company_percentage = models.IntegerField()
     date = models.DateTimeField()
 
 class Comments(models.Model):
     comment = models.TextField()
     rate = models.IntegerField()
-    user = models.ForeignKey(Client)
+    user = models.ForeignKey(TechnicalStaff)
+    client = models.ForeignKey(Client)
+
+class Rental(models.Model):
+    tech = models.ForeignKey(TechnicalStaff)
+    report = models.ForeignKey(Report)
+    rental_date = models.DateTimeField()
+    return_date = models.DateTimeField()
+
 
 
 ## Model Methods here
