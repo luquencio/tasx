@@ -1,4 +1,5 @@
 {% load staticfiles %}
+
 <html>
        <head>
          <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
@@ -8,22 +9,43 @@
            <title>TASX</title>
        </head>
        <body>
-         <div class="page-header">
-           <a href="#home" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
-           <h1><a href="">Tasx stack</a>
-             <div class="logo" alt="logo" title="logo"/>
-           </div>
-           </div>
-         </h1>
-        </div>
-</div>
-<div class="content container">
-        <div class="row">
-            <div class="col-md-8">
-              {% block content %}
-                {% endblock %}
-            </div>
-        </div>
-</div>
+       <div class="page-header">
+
+          <div class="col-sm-4">
+            <a href="">
+              <img src="{% static "images/logo.jpg" %}" class="img-rounded" alt="logo" >
+            </a>
+          </div>
+
+          <div class="col-sm-2">
+            <div class="links"><a href="" class="p">Iniciar Sesión</a></div>
+
+          </div>
+
+          <div class="col-sm-2">
+            <div class="links"><a href="" class="p">Registrarse</a></div>
+
+          </div>
+
+          <div class="col-sm-2">
+            <div class="links"><a href="" class="p">¿Como Funciona?</a></div>
+
+          </div>
+
+          <div class="col-sm-2">
+            <div class="links"><a href="" class="p">Contacto</a></div>
+
+
+          </div>
+      </div>
+      <div class="content container">
+              <div class="row">
+                  <div class="col-md-8">
+                    {% block content %}
+                      {% endblock %}
+                  </div>
+              </div>
+      </div>
+
       </body>
 </html>

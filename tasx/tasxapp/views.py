@@ -2,11 +2,7 @@ from django.shortcuts import render , get_object_or_404
 from django.http import HttpResponse
 from django.utils import timezone
 from .models import Report
-# Create your views here.
-
-#def report_detail(request, pk):
-#        reports = get_object_or_404(repost, pk=pk)
-#        return render(request, 'home/post_detail.html', {'reports': repost})
+#
 
 def index(request):
     reports = Report.objects.order_by('-date').all()
