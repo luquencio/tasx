@@ -62,5 +62,5 @@ class Comments(models.Model):
 
 ## Model Methods here
 
-def publish(self):
-    self.save()
+#def publish(self):
+##    self.save()
