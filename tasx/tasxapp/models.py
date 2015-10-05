@@ -71,11 +71,6 @@ class Rental(models.Model):
     rental_date = models.DateTimeField()
     return_date = models.DateTimeField()
 
-class ToolRental(models.Model):
-    
-
-
-
 class Tool(models.Model):
     STATUS_CHOICES = (
     ('P', 'Prestado'),
@@ -86,6 +81,10 @@ class Tool(models.Model):
     name = models.CharField(max_length = 50)
     status = models.CharField(max_length = 50, choices=STATUS_CHOICES)
     tool_rental = models.ManyToManyField(Rental)
+
+class ToolRental(models.Model):
+    rental = models.ForeignKey(Rental)
+    tool = models.ForeignKey(Tool)
 
 
 ## Model Methods here

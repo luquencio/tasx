@@ -6,11 +6,12 @@ from .models import Report
 
 def index(request):
     try:
-        reports = Report.objects.all()
-        ##reports = Report.objects.filter(date=timezone.now()).order_by('date')
+        reports = Report.objects.order_by('-date').all()
     except Report.DoesNotExist:
         raise Http404("Theres no reports.")
     return render(request,'home/home.html', {'reports' : reports})
+
+#def report_detail(request):
 
 
 #def index(request):

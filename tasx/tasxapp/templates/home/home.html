@@ -1,21 +1,17 @@
-{% load staticfiles %}
-<html>
-       <head>
-         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-         <link rel="stylesheet" href="{% static "css/home.css" %}">
-           <title>TASX</title>
-       </head>
-       <body>
-   <h1>Tasx stack</a></h1>
-</div>
-      {% for report in reports %}
-    <div>
-      <h3>{{ report.title }}</a></h3>
+{%extends "home/base.html" %}
+
+{%block content%}
+{% for report in reports %}
+<div>
+  <div class="reports">
+    <div class="date">
+      <p>Published: {{ report.date }}</p>
+      </div>
+      <h3><a href="">{{ report.title }}</a></h3>
+      <h1><a href="{% url "tasxapp.views.report_detail" pk=report.pk %}">{{ report.title }}</a></h1>
       <p>{{report.category}}</p>
-        <p>published: {{ report.date }}</p>
-        <p>{{ repor.descr|linebreaks }}</p>
-   </div>
-   {% endfor %}
-      </body>
-   </html>
+      <p>{{ report.descr }}</p>
+    </div>
+</div>
+  {% endfor %}
+{% endblock content%}
