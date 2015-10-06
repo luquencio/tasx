@@ -9,7 +9,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response,redirect
 from django.template import RequestContext
 from .models import User
-from .forms import LoginForm
+from .forms import LoginForm, RegistrationForm
 from django.contrib.auth import login , logout, authenticate
 
 
@@ -45,6 +45,36 @@ def login_v(request): #Log in View
         form=LoginForm()
         ctx={'form':form,'mensaje':msg}
         return render(request,'home/login.html', ctx)
+
+
+#Registration
+def sign_up(request):
+    msg=''
+    if request.user.is_authenticated():
+        return HttpResponseRedirect('/tasxapp')
+    else:
+        if request.method=="POST":
+            form = RegistrationForm(request.POST)
+            if form.is_valid():
+                name=form.cleaned_data['name']
+                lastname=form.cleaned_data['lastname']
+                email=form.cleaned_data['email']
+                password=form.cleaned_data['password']
+                new_u=User.objects.create_user(username= email, email= email, password=password)
+                new_u.first_name=name
+                new_u.last_name=lastname
+                new_u.save()
+                new_user = authenticate(email=email,password=password)
+                if new_user is not None :
+                    login(request,new_user)
+                    new_p=UserProfile.objects.create(user=new_u,carrera=carrera)
+                    new_p.save()
+                    return redirect('/tasxapp/')
+                else:
+                    msg='Wrong'
+
+        ctx={'form':RegistrationForm,'msg':msg}
+        return render(request,'home/singup.html', ctx)
 
 
 @login_required(login_url='/tasxapp/login/')
