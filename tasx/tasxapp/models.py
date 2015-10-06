@@ -1,16 +1,18 @@
 from django.db import models
+from django.contrib.auth.models import User
+
 
 # Create your models here.
 
-class Client(models.Model):
-    username = models.CharField(max_length = 50)
-    email = models.CharField(max_length = 100)
-    password = models.CharField(max_length = 50)
-    first_name = models.CharField(max_length = 50)
-    last_name = models.CharField(max_length = 50)
+class ProfileClient(models.Model):
+    user = models.OneToOneField(User)
     address = models.CharField(max_length = 100)
     phone = models.CharField(max_length = 20)
     home_phone = models.CharField(max_length = 20)
+
+    def __str__(self):
+        return self.user.username
+
 
 class Report(models.Model):
     STATUS_CHOICES = (
@@ -31,7 +33,7 @@ class Report(models.Model):
     descr =  models.TextField()
     category = models.CharField(max_length = 5 , choices=CATEGORY_CHOICES)
     photo = models.ImageField(upload_to="media/reports", blank=True, null=True)
-    client = models.ForeignKey(Client)
+    client = models.ForeignKey(ProfileClient)
     schedule = models.CharField(max_length = 50)
 
 class TechnicalStaff(models.Model):
@@ -53,7 +55,7 @@ class ReportResult(models.Model):
 
 class Payment(models.Model):
     report = models.ForeignKey(Report)
-    client = models.ForeignKey(Client)
+    client = models.ForeignKey(ProfileClient)
     tech = models.ForeignKey(TechnicalStaff)
     cost = models.IntegerField()
     company_percentage = models.IntegerField()
@@ -63,7 +65,7 @@ class Comments(models.Model):
     comment = models.TextField()
     rate = models.IntegerField()
     user = models.ForeignKey(TechnicalStaff)
-    client = models.ForeignKey(Client)
+    client = models.ForeignKey(ProfileClient)
 
 class Rental(models.Model):
     tech = models.ForeignKey(TechnicalStaff)

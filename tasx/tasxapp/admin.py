@@ -5,7 +5,7 @@ from .models import *
 
 admin.site.register(Report)
 admin.site.register(TechnicalStaff)
-admin.site.register(Client)
+admin.site.register(ProfileClient)
 admin.site.register(ReportResult)
 admin.site.register(Payment)
 admin.site.register(Comments)
