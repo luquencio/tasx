@@ -33,8 +33,18 @@ class Report(models.Model):
     descr =  models.TextField()
     category = models.CharField(max_length = 5 , choices=CATEGORY_CHOICES)
     photo = models.ImageField(upload_to="media/reports", blank=True, null=True)
-    client = models.ForeignKey(ProfileClient)
+    user = models.ForeignKey(ProfileClient,null=True)
     schedule = models.CharField(max_length = 50)
+
+    def pay(self, request, *args, **kwargs):
+        if self.status == 'R':
+            self.status = 'PP'
+        if self.status == 'PP':
+            self.status = 'P'
+        if self.status == 'P':
+            self.status = 'SP'
+        if self.status == 'SP':
+            self.status = 'C'
 
 class TechnicalStaff(models.Model):
     username = models.CharField(max_length = 50)
@@ -90,6 +100,3 @@ class ToolRental(models.Model):
 
 
 ## Model Methods here
-
-#def publish(self):
-##    self.save()

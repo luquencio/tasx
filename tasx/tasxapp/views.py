@@ -2,6 +2,8 @@ from django.shortcuts import render , get_object_or_404
 from django.http import HttpResponse
 from django.utils import timezone
 from .models import Report
+from .forms import ReportForm
+from .models import ProfileClient
 
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
@@ -23,6 +25,28 @@ def report_detail(request, pk):
     report = Report.objects.get(pk=pk)
     return render(request,'home/post_detail.html', {'report' : report})
 
+@login_required(login_url='/tasxapp/login/')
+def pay(request, pk):
+    report = Report.objects.get(pk=pk)
+    report.pay()
+    report.save()
+    return render(request,'home/post_detail.html', {'report' : report})
+
+@login_required(login_url='/tasxapp/login/')
+def post_new(request):
+    #report = get_object_or_404(report, pk=pk)
+    if request.method == "POST":
+        form = ReportForm(request.POST)
+        if form.is_valid():
+            if request.user.is_authenticated():
+                report = form.save(commit=False)
+                #report.user = request.user
+                report.status = 'R'
+                report.save()
+            return redirect('tasxapp.views.report_detail', pk=report.pk)
+    else:
+        form = ReportForm()
+    return render(request, 'home/report_edit.html', {'form': form})
 
 
 #Authenticated

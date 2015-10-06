@@ -3,9 +3,9 @@ from .models import *
 
 class ReportForm(forms.ModelForm):
 
-        class Meta:
+        class Meta():
             model = Report
-            fields = ('title', 'status', 'descr', 'category',)
+            fields = ('title', 'descr', 'category','photo', 'schedule', )
 
 
 class LoginForm(forms.Form):

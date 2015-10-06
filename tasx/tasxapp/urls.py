@@ -9,5 +9,7 @@ urlpatterns = [
     url(r'^login/$',views.login_v,name='login_v'),
     url(r'^logout/$',views.logout_v,name='logout_v'),
     url(r'^signup/$',views.sign_up,name='singup_v'),
+    url(r'^report/new/$', views.post_new, name='new_report'),
+    #url(r'^report/pay/$', views.pay, name='pay'),
 
 ]
